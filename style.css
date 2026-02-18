@@ -1,0 +1,353 @@
+/* --- Reseteo básico --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+fieldset {
+    border: none;
+}
+
+/* =========================================
+   ESTILOS DEL LOGIN
+   ========================================= */
+.login-body {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.login-card {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-card h2 {
+    color: #1f2937;
+    margin-bottom: 8px;
+}
+
+.login-subtitle {
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #374151;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #4338ca;
+}
+
+.login-footer {
+    margin-top: 24px;
+    font-size: 14px;
+}
+
+.login-footer a {
+    color: #4f46e5;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* =========================================
+   ESTILOS DE LAS PANTALLAS DE CONTENIDO
+   ========================================= */
+.content-body {
+    background-color: #f9fafb;
+    color: #1f2937;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Navegación Superior */
+.main-header {
+    background-color: #ffffff;
+    padding: 0 40px;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.main-header h1 {
+    font-size: 22px;
+    color: #4f46e5;
+}
+
+.top-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.top-nav a {
+    text-decoration: none;
+    color: #4b5563;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.top-nav a:hover, .top-nav a.active {
+    background-color: #eef2ff;
+    color: #4f46e5;
+}
+
+.top-nav a.logout {
+    color: #ef4444;
+}
+
+.top-nav a.logout:hover {
+    background-color: #fef2f2;
+}
+
+/* --- NUEVO: Layout con Aside --- */
+.content-container {
+    flex: 1;
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.layout-with-aside {
+    display: grid;
+    /* Divide la pantalla: 1 fracción para el contenido, 280px para el aside */
+    grid-template-columns: 1fr 280px; 
+    gap: 30px;
+    align-items: start;
+}
+
+/* Columna Principal */
+.primary-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.intro-section h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.intro-section p {
+    color: #6b7280;
+    font-size: 16px;
+}
+
+/* --- NUEVO: Estilos del Aside --- */
+.sidebar-aside {
+    background-color: #5980ce;
+    padding: 24px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.sidebar-aside h3 {
+    font-size: 18px;
+    color: #111827;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eef2ff;
+}
+
+.aside-nav ul {
+    list-style: none;
+}
+
+.aside-nav li {
+    margin-bottom: 12px;
+}
+
+.aside-nav a {
+    text-decoration: none;
+    color: #4b5563;
+    font-size: 35px;
+    transition: color 0.2s;
+    display: block;
+}
+
+.aside-nav a:hover {
+    color: #dc5e1a;
+    padding-left: 5px; /* Pequeño efecto de movimiento */
+}
+
+/* Pantalla 1: Cuadrícula de Artículos */
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.content-card {
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    display: flex;
+    flex-direction: column;
+}
+
+.content-card h3 {
+    margin-bottom: 12px;
+    color: #111827;
+}
+
+.content-card p {
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+/* Pantalla 2: Lista de Recursos */
+.resources-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.resource-item {
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.resource-image {
+    width: 150px;
+    background-color: #f3f4f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.resource-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.resource-info {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+}
+
+.resource-info h3 {
+    margin-bottom: 8px;
+    color: #111827;
+}
+
+.resource-info p {
+    color: #6b7280;
+    margin-bottom: 16px;
+}
+
+/* Botones Secundarios */
+.btn-secondary {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #eef2ff;
+    color: #4f46e5;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.3s;
+    align-self: flex-start;
+}
+
+.btn-secondary:hover {
+    background-color: #e0e7ff;
+}
+
+/* Pie de página */
+.main-footer {
+    background-color: #1f2937;
+    color: #9ca3af;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+}
+
+/* --- Responsive para dispositivos móviles --- */
+@media (max-width: 850px) {
+    .layout-with-aside {
+        grid-template-columns: 1fr; /* Apila el Aside debajo del contenido en móviles */
+    }
+    
+    .resource-item {
+        flex-direction: column;
+    }
+    
+    .resource-image {
+        width: 100%;
+        height: 150px;
+    }
+}
