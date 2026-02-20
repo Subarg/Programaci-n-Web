@@ -14,7 +14,7 @@ fieldset {
    ESTILOS DEL LOGIN
    ========================================= */
 .login-body {
-    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    background: linear-gradient(135deg, #c69d21 0%, #99a01e 100%);
     height: 100vh;
     display: flex;
     justify-content: center;
