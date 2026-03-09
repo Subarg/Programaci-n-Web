@@ -1,0 +1,194 @@
+body {
+    background-color: #111; /* Color de fondo */
+}
+header.glass-header {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center; 
+    padding: 25px 50px; /* Espacio interior: 25px arriba/abajo, 50px izquierda/derecha */
+    color: white; /* Color del texto del encabezado */
+}
+
+.logo {
+    font-size: 24px; /* Tamaño de la letra del logo */
+    font-weight: bold; /* Hace la letra negrita (gruesa) */
+    letter-spacing: 2px; /* Añade espacio extra entre cada letra */
+}
+
+nav ul {
+    display: flex; 
+    list-style: none; 
+    gap: 30px; /* Crea un espacio de 30px entre cada enlace del menú */
+}
+
+nav a {
+    color: white; /* Color blanco para los enlaces */
+    text-decoration: double; 
+    font-size: 14px; /* Tamaño de texto de los enlaces */
+    text-transform: uppercase; /* Convierte todo el texto del enlace a MAYÚSCULAS */
+    letter-spacing: 1px; /* Espacio entre las letras de los enlaces */
+}
+
+nav a:hover {
+    background: white; /* Pone fondo blanco cuando pasas el mouse por encima */
+    background: fixed; 
+    color: rgb(37, 200, 86); /* Cambia el color del texto cuando pasas el mouse */
+    transition: 0.3s ease; /* Hace que el cambio de color sea suave y tarde 0.3 segundos */
+}
+
+li {
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+
+.btn-login {
+    background: transparent; 
+    color: white; /* Texto blanco */
+    border: 1px solid white; /* Borde de 1 pixel, sólido y blanco */
+    padding: 10px 20px; 
+    border-radius: 20px; 
+    cursor: pointer; 
+    transition: 0.3s ease; /* Animación suave para los cambios de estado (como el hover) */
+}
+
+.btn-login:hover {
+    background: white; /* Rellena el botón de blanco al pasar el mouse */
+    color: black; 
+}
+
+/* Principal */
+
+.seccion-editorial-destinos {
+    background-color: #fdfbf7; 
+    color: #333; /* Texto oscuro para contrastar con el fondo claro */
+    padding: 100px 5%; /* Da mucho espacio a los lados para que respire el diseño */
+}
+
+/* IMÁGENES ESCALONADAS*/
+.destino-destacado {
+    display: flex; /* Pone las imágenes y el texto uno al lado del otro */
+    align-items: center; /* Los centra verticalmente */
+    justify-content: space-between;
+    gap: 60px; /* Separación entre las fotos y el texto */
+    margin-bottom: 120px; /* Espacio gigante antes del Bloque 2 */
+}
+
+/* Imágenes superpuestas */
+.grupo-imagenes-escalonadas {
+    position: relative; /* Es el escenario para mover las fotos libremente */
+    flex: 1; /* Ocupa la mitad de la pantalla */
+    height: 550px; /* Un alto fijo para que las fotos tengan espacio donde moverse */
+}
+
+.img-atras {
+    position: absolute;
+    top: 0; /* Pegada arriba */
+    left: 0; /* Pegada a la izquierda */
+    width: 65%; /* Ocupa un poco más de la mitad del contenedor */
+    height: 80%; /* No llega hasta abajo */
+    object-fit: cover;
+}
+
+.img-frente {
+    position: absolute;
+    bottom: 0; /* Pegada abajo */
+    right: 10%; /* Empujada hacia la derecha */
+    width: 55%; /* Un poco más pequeña que la de atrás */
+    height: 70%;
+    object-fit: cover;
+    /* Este borde blanco del mismo color que el fondo crea el corte/marco */
+    border: 12px solid #fdfbf7; 
+    box-shadow: -15px 15px 30px rgba(0,0,0,0.1); /* Sombra suave para dar profundidad 3D */
+    transition: transform 0.4s ease; /* Prepara una animación al pasar el mouse */
+}
+
+/* Pequeña interacción: Al pasar el mouse por las fotos, la de enfrente se levanta un poco */
+.grupo-imagenes-escalonadas:hover .img-frente {
+    transform: translateY(-10px) scale(1.02);
+}
+
+/* Textos del lado derecho */
+.info-destacada {
+    flex: 1; /* Ocupa la otra mitad de la pantalla */
+    max-width: 500px; /* Evita que las líneas de texto sean infinitamente largas */
+}
+
+.subtitulo-elegante {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.85rem;
+    color: #c9b191; /* Tu dorado */
+    margin-bottom: 10px;
+}
+
+/* TARJETAS LATERALES */
+.atracciones-cercanas {
+    display: flex; /* Pone el texto de la izquierda y las tarjetas de la derecha en fila */
+    gap: 50px;
+    background-color: #fff; /* Un blanco puro para resaltar esta sección dentro del fondo crema */
+    padding: 80px 50px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+}
+
+.texto-lateral {
+    flex: 0.3; /* Ocupa el 30% del espacio para dejarle más a las fotos */
+}
+
+.grid-tarjetas-mini {
+    flex: 0.7; /* Ocupa el 70% del espacio */
+    display: flex; /* En lugar de Grid, usamos Flexbox */
+    gap: 30px;
+}
+
+.tarjeta-atraccion {
+    flex: 1; /* Todas las tarjetas miden igual */
+}
+
+.tarjeta-atraccion img {
+    width: 100%;
+    height: 250px; /* Fotos más apaisadas */
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.tarjeta-atraccion h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+/* Enlace tipo texto */
+.enlace-sutil {
+    color: #c9b191;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: opacity 0.3s ease;
+}
+
+.enlace-sutil:hover {
+    opacity: 0.7;
+}
+
+/* BOTONES ESTILO EDITORIAL */
+/* Botón relleno */
+.btn-dorado {
+    background-color: #c9b191;
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Botón con contorno */
+.btn-linea {
+    background-color: transparent;
+    color: #c9b191;
+    border: 2px solid #c9b191;
+    padding: 12px 30px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-weight: 600;
+}

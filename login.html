@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Hotel Therian</title>
+    <!-- Tipo de Letra-->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400;1,6..96,700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="loging.css">
+</head>
+<body>
+    <div class="background" aria-hidden="true"></div> 
+
+    <main class="main-container">
+        
+        <header class="logo">
+            <figure>
+                <img src="imagenes/logohotel.png" alt="Logotipo del Hotel">
+            </figure>
+        </header>
+        
+        <section class="container" id="container">
+            <article class="form-container sign-in-container">
+                <form id="loginForm">
+                    <h1>Iniciar Sesión</h1>
+                    
+                    <fieldset class="input-group">
+                        <label for="loginId" class="sr-only">Usuario o ID</label>
+                        <i class="fas fa-user" aria-hidden="true"></i>
+                        <input type="text" id="loginId" placeholder="Usuario / ID" required>
+                    </fieldset>
+                    
+                    <fieldset class="input-group">
+                        <label for="loginPassword" class="sr-only">Contraseña</label>
+                        <i class="fas fa-lock" aria-hidden="true"></i>
+                        <input type="password" id="loginPassword" placeholder="Contraseña" required>
+                    </fieldset>
+                    
+                    <button type="submit">Iniciar Sesión</button>
+                </form>
+            </article>
+
+            <article class="form-container sign-up-container">
+                <form id="registerForm">
+                    <h1>Registrarse</h1>
+                    
+                    <fieldset class="input-group">
+                        <label for="registerUser" class="sr-only">Usuario</label>
+                        <i class="fas fa-user" aria-hidden="true"></i>
+                        <input type="text" id="registerUser" placeholder="Usuario" required>
+                    </fieldset>
+                    
+                    <fieldset class="input-group">
+                        <label for="registerId" class="sr-only">ID</label>
+                        <i class="fas fa-id-card" aria-hidden="true"></i>
+                        <input type="text" id="registerId" placeholder="ID" required>
+                    </fieldset>
+                    
+                    <fieldset class="input-group">
+                        <label for="registerEmail" class="sr-only">Correo electrónico</label>
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        <input type="email" id="registerEmail" placeholder="Correo" required>
+                    </fieldset>
+                    
+                    <fieldset class="input-group">
+                        <label for="registerPassword" class="sr-only">Contraseña</label>
+                        <i class="fas fa-lock" aria-hidden="true"></i>
+                        <input type="password" id="registerPassword" placeholder="Contraseña" required>
+                    </fieldset>
+                    
+                    <button type="submit">Registrarse</button>
+                </form>
+            </article>
+
+            <aside class="overlay-container" aria-label="Controles de cambio de vista">
+                <div class="overlay">
+                    <section class="overlay-panel overlay-left">
+                        <h2>¡Bienvenido de vuelta!</h2>
+                        <p>¿Ya tienes una cuenta? Inicia sesión aquí</p>
+                        <button type="button" class="ghost" id="signIn">Iniciar Sesión</button>
+                    </section>
+                    <section class="overlay-panel overlay-right">
+                        <h2>¡Hola, nuevo usuario!</h2>
+                        <p>¿No tienes una cuenta? Regístrate aquí</p>
+                        <button type="button" class="ghost" id="signUp">Registrarse</button>
+                    </section>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

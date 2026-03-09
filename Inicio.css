@@ -1,0 +1,533 @@
+/* El '*' aplica a TODOS los elementos de la página */
+* {
+    margin: 0; /* Quita el margen exterior por defecto del navegador */
+    padding: 0; /* Quita el espacio interior por defecto del navegador */
+    box-sizing: border-box; /* Asegura que el padding y los bordes no aumenten el tamaño total de las cajas */
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; /* Define la fuente de texto principal y sus alternativas si no está instalada */
+}
+
+/* Estilos para el cuerpo principal de la página */
+body {
+    background-color: #111; /* Color de fondo */
+}
+
+/* SECCIÓN HERO (LA PANTALLA PRINCIPAL) */
+
+/* Estilos para la etiqueta <main> que tiene el id "hero" */
+main#hero {
+    height: 100vh; /* Ocupa el 100% de la altura visible de la pantalla */
+    width: 100%; /* Ocupa el 100% del ancho disponible */
+    /* Define la imagen de fondo, evita que se repita (no-repeat), la centra (center center) y hace que cubra todo el espacio sin deformarse (/cover) */
+    background: url('imagenes/hotelfondo.jpg') no-repeat center center/cover;
+    position: relative; /* Permite posicionar elementos 'absolutos' dentro de esta caja (como el buscador o la capa oscura) */
+    display: flex; /* Activa Flexbox para alinear el contenido fácilmente */
+    flex-direction: column; /* Apila los elementos hijos en forma de columna (uno debajo de otro) */
+}
+
+/* Capa oscura sobre la imagen para resaltar el texto usando el pseudo-elemento ::before */
+main#hero::before {
+    content: ''; /* Es obligatorio poner content para que el ::before exista, aunque esté vacío */
+    position: absolute; /* Saca a la capa del flujo normal para poder sobreponerla */
+    top: 0; left: 0; right: 0; bottom: 0; /* Estira la capa para que toque los 4 bordes del contenedor principal */
+    background: rgba(0, 0, 0, 0.4); /* Color negro con 40% de opacidad (transparencia) */
+    z-index: 1; /* Coloca esta capa oscura en el nivel 1 de profundidad (arriba del fondo, abajo del texto) */
+}
+
+/* Elevamos el contenido sobre la capa oscura */
+.glass-header, .hero-content, .booking-glass-card {
+    position: relative; /* Necesario para que el z-index funcione en estos elementos */
+    z-index: 2; /* Coloca estos elementos en el nivel 2, para que queden por encima de la capa oscura */
+}
+
+/* ENCABEZADO (HEADER Y NAVEGACIÓN)*/
+
+header.glass-header {
+    display: flex; /* Activa Flexbox */
+    justify-content: space-between; /* Empuja el logo a la izquierda y el menú a la derecha */
+    align-items: center; /* Centra los elementos verticalmente */
+    padding: 25px 50px; /* Espacio interior: 25px arriba/abajo, 50px izquierda/derecha */
+    color: white; /* Color del texto del encabezado */
+}
+
+.logo {
+    font-size: 24px; /* Tamaño de la letra del logo */
+    font-weight: bold; /* Hace la letra negrita (gruesa) */
+    letter-spacing: 2px; /* Añade espacio extra entre cada letra */
+}
+
+nav ul {
+    display: flex; /* Pone los elementos de la lista en una fila horizontal */
+    list-style: none; /* Quita los 'puntitos' (viñetas) por defecto de las listas */
+    gap: 30px; /* Crea un espacio de 30px entre cada enlace del menú */
+}
+
+nav a {
+    color: white; /* Color blanco para los enlaces */
+    text-decoration: double; /* Subraya los enlaces con una línea doble (Nota: el estándar suele ser 'none' para quitar la línea) */
+    font-size: 14px; /* Tamaño de texto de los enlaces */
+    text-transform: uppercase; /* Convierte todo el texto del enlace a MAYÚSCULAS */
+    letter-spacing: 1px; /* Espacio entre las letras de los enlaces */
+}
+
+nav a:hover {
+    background: white; /* Pone fondo blanco cuando pasas el mouse por encima */
+    background: fixed; /*Esta propiedad no es válida para el color de fondo */
+    color: rgb(37, 200, 86); /* Cambia el color del texto cuando pasas el mouse */
+    transition: 0.3s ease; /* Hace que el cambio de color sea suave y tarde 0.3 segundos */
+}
+
+li {
+    display: flex; /* Aplica Flexbox a los elementos de la lista */
+    align-items: center; /* Centra su contenido verticalmente */
+    gap: 10px; /* Espacio entre los elementos dentro del <li> (por si se le pones iconos después) */
+}
+
+.btn-login {
+    background: transparent; /* El botón no tiene color de fondo inicialmente */
+    color: white; /* Texto blanco */
+    border: 1px solid white; /* Borde de 1 pixel, sólido y blanco */
+    padding: 10px 20px; /* Espacio interior para engordar el botón */
+    border-radius: 20px; /* Redondea las esquinas del botón */
+    cursor: pointer; /* Cambia el cursor a la "manita" cuando pasas el mouse por encima */
+    transition: 0.3s ease; /* Animación suave para los cambios de estado (como el hover) */
+}
+
+.btn-login:hover {
+    background: white; /* Rellena el botón de blanco al pasar el mouse */
+    color: black; /* Cambia el texto a negro para que se lea sobre el fondo blanco */
+}
+
+/* MENSAJE PRINCIPAL (TEXTO DEL HERO) */
+
+article.hero-content {
+    flex-grow: 1; /* Hace que este contenedor ocupe todo el espacio libre disponible a lo alto */
+    display: flex; 
+    flex-direction: column; /* Apila el h1 y el p en forma de columna */
+    justify-content: center; /* Centra el texto verticalmente en la pantalla */
+    padding-left: 10%; /* Empuja el texto un 10% hacia la derecha para que no pegue al borde */
+    color: white;
+}
+
+article.hero-content h1 {
+    font-size: 4.5rem; /* Tamaño de letra gigante para el título principal */
+    line-height: 1.1; /* Controla el interlineado (espacio entre renglones del título) */
+    margin-bottom: 20px; /* Separación hacia abajo (con el párrafo) */
+    font-weight: 300; /* Letra un poco más delgada y elegante */
+}
+
+article.hero-content p {
+    font-size: 1.2rem; /* Tamaño del párrafo descriptivo */
+    max-width: 400px; /* Evita que el texto sea muy largo; lo corta a los 400px de ancho */
+    opacity: 0.9; /* Lo hace un 10% transparente para que resalte menos que el título */
+}
+
+/*  BUSCADOR DE RESERVAS (EFECTO CRISTAL WASAAAAAAAAAAAAAAAAA) */
+
+section.booking-glass-card {
+    position: absolute; /* Saca el buscador del flujo normal para ponerlo encima de la imagen */
+    bottom: 10%; /* Lo separa un 10% de la parte de abajo de la pantalla */
+    left: 50%; /* Empuja la caja al 50% de la pantalla (la mitad) */
+    transform: translateX(-50%); /* Lo centra perfectamente retrocediendo la mitad de su propio ancho */
+    width: 80%; /* Ocupa el 80% del ancho disponible */
+    max-width: 900px; /* Evita que se estire demasiado en pantallas gigantes */
+    
+    background: rgba(255, 255, 255, 0.1); /* Fondo blanco con solo 10% de visibilidad (Casi transparente) */
+    backdrop-filter: blur(15px); /* Desenfoque del fondo (Este es el efecto "cristal" principal) */
+    -webkit-backdrop-filter: blur(15px); /* Soporte de desenfoque para navegadores de Apple (Safari) */
+    
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde blanco muy delgadito y transparente */
+    border-radius: 15px; /* Redondea las esquinas de la tarjeta */
+    padding: 20px 40px; /* Espacio interior: 20px arriba/abajo, 40px a los lados */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* Sombra oscura para que la tarjeta parezca flotar */
+}
+
+form.booking-form {
+    display: flex; /* Pone todos los campos del formulario en una sola línea horizontal */
+    justify-content: space-between; /* Distribuye el espacio sobrante equitativamente entre los campos */
+    align-items: center; /* Alinea los campos verticalmente por el centro */
+    gap: 20px; /* Espacio de 20px entre cada campo de entrada */
+}
+
+fieldset.input-group {
+    border: none; /* Quita el cuadro o borde feo que traen los <fieldset> por defecto en HTML */
+    display: flex; 
+    flex-direction: column; /* Apila la etiqueta (<label>) arriba y el input abajo */
+    color: white; 
+    flex: 1; /* Hace que todos los campos midan exactamente lo mismo de ancho */
+}
+
+/*  ESTILOS DE LOS CAMPOS DEL FORMULARIO */
+
+fieldset.input-group label {
+    font-size: 0.8rem; /* Texto pequeño para las etiquetas */
+    text-transform: uppercase; /* Etiquetas en mayúsculas */
+    letter-spacing: 1px; 
+    margin-bottom: 8px; /* Separación con el input de abajo */
+    opacity: 0.8; /* Ligeramente transparente */
+    cursor: pointer;
+    
+    /* Estilos añadidos en el segundo bloque: */
+    background: rgba(102, 0, 51); /* Fondo para las etiquetas */
+    color: burlywood; /* Color de texto beige/madera clara */
+    border: none;
+    padding: 10px 20px; /* Relleno interior */
+    border-radius: 20px; /* Esquinas muy redondeadas */
+}
+
+fieldset.input-group input, 
+fieldset.input-group select {
+    background: transparent; /*El fondo del cuadro es totalmente invisible */
+    border: none; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* con una línea blanca debajo, excepto el de abajo, para hacer una línea subrayada */
+    color: white;
+    padding: 5px 0;
+    font-size: 1rem;
+    outline: none; /* Quita el borde azul molesto que sale al hacer clic */
+}
+
+/* Invierte los colores del icono del calendario (que por defecto es negro) para que se vea blanco sobre fondo oscuro */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* El icono original es negro, esto lo invierte a blanco para que se vea en el fondo oscuro */
+    cursor: pointer;
+}
+
+/* Color del texto dentro de las opciones desplegables */
+fieldset.input-group select option {
+    color: black; /* Se pone negro porque en menú desplegado los navegadores usan fondo blanco por defecto */
+}
+
+/* Estilos de sobreescritura para inputs específicos (segundo bloque) */
+fieldset.input-group input[type="date"] {
+    background: rgb(99, 132, 127); /* Fondo verde oscuro para los selectores de fecha */
+    color: burlywood; /* Texto */
+    border: none; /* Quita la línea inferior que habíamos puesto arriba */
+    padding: 10px 20px;
+    border-radius: 20px; /* Los hace ver como "pastillas" */
+}
+
+fieldset.input-group select {
+    background: rgb(73, 110, 194); /* Fondo para el menú desplegable */
+    color: burlywood; /* Texto */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+/* Botón de envío del buscador */
+button.btn-book {
+    background: white; /* Color original */
+    color: black;
+    border: none;
+    padding: 15px 30px; /* Botón grande y clickeable */
+    border-radius: 30px; /* Bordes totalmente redondos tipo píldora */
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.2s ease; /* Prepara el botón para hacer un zoom al pasar el mouse */
+}
+
+button.btn-book:hover {
+    transform: scale(1.05); /* Hace que el botón crezca un 5% al poner el mouse encima */
+}
+
+
+/* CARRUSEL 3D (COVERFLOW) */
+
+/* Contenedor principal de toda la sección del carrusel */
+.carrusel-3d-container {
+    min-height: calc(100vh - 90px); /* Abarca toda la pantalla menos 90px (para compensar el menú superior y no dejar huecos) */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el carrusel horizontalmente */
+    justify-content: center; /* Centra el carrusel verticalmente */
+    background-color: #f9f9f9; /* Color para el fondo */
+    padding: 20px;
+    overflow: hidden; /* Muy importante: Oculta cualquier cosa que se salga de la pantalla para evitar que aparezca una barra de desplazamiento horizontal no deseada */
+}
+
+/* EL ESCENARIO (HACEMOS EL ESCENARIO MÁS GRANDE Y SUBIMOS LA PERSPECTIVA) */
+.escenario-3d {
+    width: 800px;  /* Define el ancho base del área donde girarán las tarjetas (Mucho más ancho) */
+    height: 525px; /* Distancia de la perspectiva entre el header y el contenido */
+    position: relative; /* Necesario para que las tarjetas se posicionen de forma absoluta respecto a este contenedor */
+    
+    /* perspective es la distancia simulada entre el usuario y el elemento 3D. 
+       A mayor número (2500px), el efecto es más sutil y menos distorsionado. */
+    perspective: 2500px; 
+    margin-top: 20px; /* Separación desde arriba */
+}
+
+/* El elemento que realmente gira (contiene todas las tarjetas) */
+#carousel-rotativo {
+    width: 100%;
+    height: 100%;
+    position: absolute; /* Se ancla al escenario 3D */
+    
+    /* transform-style: preserve-3d le dice al navegador que los hijos de este elemento (las tarjetas) deben mantener sus posiciones en 3D (Z, X, Y), no aplanarse. */
+    transform-style: preserve-3d;
+    
+    /* Aplica la animación 'rotacion-continua'. Tarda 20s en dar una vuelta, se repite infinitamente (infinite), y va a una velocidad constante (linear) sin acelerar o frenar. */
+    animation: rotacion-continua 20s infinite linear; /* Tiempo que gira cada tarjeta*/
+}
+
+/* 2. TARJETAS INDIVIDUALES (Formato Horizontal) */
+.habitacion-card {
+    display: block; /* Se asegura de que se comporte como un bloque manipulable */
+    position: absolute; /* Saca a cada tarjeta del flujo normal para poder apilarlas y rotarlas desde un mismo punto central */
+    width: 800px;  /* Ancho de la tarjeta (coincide con el escenario) */
+    height: 500px; /* Alto de la tarjeta */
+    left: 0;
+    top: 0;
+    margin: 0;
+    background: white; /* Fondo blanco para las tarjetas */
+    border-radius: 20px; /* Bordes redondeados de la tarjeta */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4); /* Crea una sombra grande y suave que le da el efecto de estar flotando */
+    overflow: hidden; /* Corta cualquier parte de la imagen que intente salirse de los bordes redondeados */
+}
+
+/* Ajustes de la imagen dentro de la tarjeta */
+.habitacion-card img {
+    width: 100%; /* La imagen ocupa todo el ancho de la tarjeta */
+    height: 75%; /* La foto ocupa el 75% del alto total de la tarjeta */
+    
+    /* object-fit: cover es mágico: asegura que la imagen llene su espacio sin deformarse ni aplastarse, recortando lo sobrante si es necesario. */
+    object-fit: cover; 
+}
+
+/* Ajustes del texto descriptivo debajo de la imagen */
+.habitacion-card figcaption {
+    height: 15%; /* Ocupa el espacio restante de la tarjeta (Hay un hueco del 10% aquí si sumamos 75+15) */
+    display: flex;
+    align-items: center; /* Centra el texto verticalmente en su espacio */
+    justify-content: center; /* Centra el texto horizontalmente */
+    font-size: 1.5rem; /* Tamaño de texto grande */
+    font-weight: bold; /* Letra negrita */
+    color: #c9b191; /* Color dorado/beige para el nombre de la habitación */
+}
+
+/* 3. LÓGICA DE LAS 5 TARJETAS Y POSICIONAMIENTO EN 3D 
+   Explicación por qu se me va a olvidar esto y tengo que escribirlo aquí para no perderlo:
+   - Para 5 tarjetas, dividimos el círculo (360 grados) entre 5 = 72 grados de separación.
+   - rotateY() las gira sobre su eje vertical como una puerta.
+   - translateZ() las empuja hacia adelante en el espacio 3D (alejándolas del centro para formar un anillo).
+*/
+
+/* nth-child(1) selecciona la primera tarjeta, (2) la segunda, etc. */
+.habitacion-card:nth-child(1) { transform: rotateY(0deg) translateZ(800px); } /* Tarjeta 1: Mira de frente */
+.habitacion-card:nth-child(2) { transform: rotateY(72deg) translateZ(800px); } /* Tarjeta 2: Girada 72 grados a la derecha */
+.habitacion-card:nth-child(3) { transform: rotateY(144deg) translateZ(800px); } /* Tarjeta 3: Girada 144 grados... */
+.habitacion-card:nth-child(4) { transform: rotateY(216deg) translateZ(800px); }
+.habitacion-card:nth-child(5) { transform: rotateY(288deg) translateZ(800px); }
+
+/* 4. ANIMACIÓN DE ROTACIÓN */
+/* Los keyframes definen los pasos de la animación que declaramos arriba ('rotacion-continua') */
+@keyframes rotacion-continua {
+    0% { transform: rotateY(0deg); } /* Al inicio (0%), el carrusel está en su posición inicial (0 grados) */
+    100% { transform: rotateY(-360deg); } /* Al final (100%), el carrusel dio una vuelta completa hacia la izquierda (por el signo menos) */
+}
+
+/* Interacción con el usuario */
+#carousel-rotativo:hover {
+    animation-play-state: paused; /* Cuando el usuario pone el cursor sobre el carrusel, la animación de giro se detiene (pausa) para que pueda ver la imagen con calma. */
+}
+
+/*  MOSAICO */
+.inicio-mosaico-lujo {
+    background-color: #111; /* Fondo oscuro continuo */
+    padding: 80px 10%;
+    color: white;
+}
+
+/* Fila de iconos dorados espaciados */
+.fila-iconos-dorados {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+    border-bottom: 1px solid rgba(201, 177, 145, 0.2); /* Línea divisoria muy sutil */
+    padding-bottom: 40px;
+}
+
+.icono-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    color: #c9b191; /* Dorado */
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+}
+
+.icono-item i {
+    font-size: 2.5rem; /* Iconos gigantes */
+}
+
+/* El mosaico de fotos (1 grande, 2 chicas) usando CSS Grid */
+.grid-mosaico {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* La columna derecha ocupa el doble que la izquierda */
+    gap: 30px;
+    height: 500px;
+}
+
+.columna-izquierda-mosaico {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.foto-chica, .foto-grande-derecha {
+    overflow: hidden; /* Corta bordes */
+    border-radius: 5px; /* Borde apenas redondeado como en la referencia */
+}
+
+.foto-chica img, .foto-grande-derecha img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+/* Zoom elegante al pasar el mouse por las fotos del mosaico */
+.foto-chica:hover img, .foto-grande-derecha:hover img {
+    transform: scale(1.05);
+}
+
+/*  4 COLUMNAS  */
+.inicio-servicios-numerados {
+    background-color: #1a1a1a; /* Un gris muuuy oscuro para contrastar con el #111 */
+    padding: 100px 10%;
+    color: white;
+}
+
+.titulo-servicios {
+    font-family: 'Montserrat', sans-serif; /* Título limpio y moderno */
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 50px;
+}
+
+/* Grid perfecto de 4 columnas */
+.grid-cuatro-columnas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas de igual tamaño */
+    gap: 30px;
+}
+
+.columna-num figure {
+    height: 250px; /* Fotos altas y delgadas */
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.columna-num img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.8); /* Oscurece un poquito la foto por defecto */
+    transition: filter 0.4s ease;
+}
+
+.columna-num:hover img {
+    filter: brightness(1.1); /* Se ilumina al pasar el mouse */
+}
+
+/* El número gigante transparente */
+.num-gigante {
+    font-family: 'Bodoni Moda', serif; /* Fuente */
+    font-size: 3.5rem;
+    color: transparent;
+    -webkit-text-stroke: 1px white; /* Delineado blanco, fondo transparente */
+    margin-bottom: 10px;
+}
+
+.columna-num h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.columna-num p {
+    font-size: 0.85rem;
+    color: #999;
+    line-height: 1.5;
+}
+
+/*  BLOQUES SUPERPUESTOS*/
+.inicio-bloques-superpuestos {
+    background-color: #111;
+    padding: 100px 10%;
+    color: white;
+}
+
+.titulo-bloques {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 50px;
+}
+
+/* Flexbox para acomodar la izquierda (tarjetas) y derecha (imagen) */
+.contenedor-overlap {
+    display: flex;
+    align-items: center; /* Centra verticalmente */
+    position: relative;
+}
+
+/* La cuadrícula 2x2 de la izquierda */
+.cuadricula-tarjetas-overlap {
+    flex: 0.6; /* Ocupa el 60% del ancho */
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas */
+    gap: 20px;
+    
+    /* z-index la pone por encima, y translateX la empuja hacia la derecha 
+       para que se "monte" encima de la imagen */
+    z-index: 5;
+    transform: translateX(50px); 
+}
+
+/* El diseño de las cajas de texto */
+.tarjeta-overlap {
+    background-color: #1a1a1a; /* Gris oscuro para resaltar sobre el fondo negro */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde súper sutil */
+    padding: 35px 25px;
+    transition: background-color 0.4s ease;
+}
+
+.tarjeta-overlap:hover {
+    background-color: #c9b191; /* Se vuelve dorada al pasar el mouse */
+    color: #111; /* Texto negro para contrastar */
+}
+
+.tarjeta-overlap h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.tarjeta-overlap p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    opacity: 0.8;
+}
+
+/* La imagen grande de la derecha */
+.imagen-overlap {
+    flex: 0.4; /* Ocupa el 40% del espacio base */
+    height: 500px; /* Alta para que las tarjetas quepan encima */
+    width: 50%; /* Se estira debajo de las tarjetas */
+}
+
+.imagen-overlap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7); /* Ligeramente oscura para que no le robe atención a las tarjetas */
+}

@@ -1,0 +1,263 @@
+/* ESTILOS GENERALES Y FONDO*/
+* {
+    box-sizing: border-box; /* Obliga a que los padding y bordes se calculen hacia adentro */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Bodoni Moda', sans-serif; /* Fuente para todo el login */
+    overflow: hidden; /* Evita que aparezcan barras de scroll si algo se mueve en la animación */
+    height: 100vh; /* El cuerpo ocupa exactamente el 100% de la altura de la pantalla */
+    width: 100vw; /* El cuerpo ocupa exactamente el 100% del ancho de la pantalla */
+    position: relative; /* Permite colocar el fondo de forma absoluta respecto al body */
+}
+
+/* El fondo desenfocado del login */
+.background {
+    position: absolute; /* Lo saca del flujo normal para ponerlo detrás de todo */
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url('imagenes/fondolog.jpg'); /* Imagen de fondo */
+    filter: blur(5px); /* Le aplica un efecto de desenfoque*/
+    z-index: -1; /* Lo manda al fondo de todo (de profundidad) */
+}
+
+/* CONTENEDORES PRINCIPALES*/
+
+/* Envuelve absolutamente todo el contenido para centrarlo en la pantalla */
+.main-container {
+    display: flex; /* Activa Flexbox */
+    flex-direction: column; /* Apila el logo y el cuadro de login en forma de columna */
+    align-items: center; /* Los centra horizontalmente */
+    justify-content: center; /* Los centra verticalmente */
+    height: 100%; /* Ocupa todo el alto disponible */
+}
+
+/* Ajustes para el contenedor del logo del hotel */
+header.logo figure {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ajusta la imagen sin deformarla ni recortarla */
+}
+
+/* El cuadro blanco principal (La tarjeta que contiene ambos formularios) */
+.container {
+    background: #fff; /* Fondo*/
+    border-radius: 10px; /* Esquinas redondeadas */
+    /* Crea una sombra para dar un efecto de elevación o 3D UuUuU*/
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    position: relative; /* "Contenedor Padre" Todo lo absoluto adentro se guiará por las paredes de este contenedor */
+    overflow: hidden; /* Corta cualquier parte de los paneles que intente salirse de las esquinas redondeadas */
+    width: 900px; /* Ancho fijo para monitores grandes */
+    max-width: 100%; /* Evita que se salga en celulares */
+    min-height: 550px; /* Altura mínima para que quepan todos los inputs sin aplastarse */
+    display: flex;
+    transition: all 0.5s ease; /* Cualquier cambio en este contenedor será suave */
+}
+
+/* FORMULARIOS (INICIAR SESIÓN Y REGISTRO) */
+
+/* Estilo base compartido para AMBOS formularios (Izquierdo y Derecho) */
+.form-container {
+    position: absolute; /* Los despegamos para poder moverlos libremente */
+    top: 0; /* Pegados al techo del contenedor padre */
+    height: 100%; /* Ocupan todo el alto del contenedor padre */
+    transition: all 0.6s ease-in-out; /* Animación de 0.6s cuando se muevan */
+    display: flex;
+    flex-direction: column; /* Apila los inputs uno debajo de otro */
+    justify-content: center; /* Centra los inputs verticalmente */
+    align-items: center; /* Centra los inputs horizontalmente */
+    padding: 0 50px; /* IMPORTANTE: Da un respiro de 50px a los lados para que no pegue al borde */
+    text-align: center;
+}
+
+/* Contenedor específico del Login (Lado izquierdo) */
+.sign-in-container {
+    left: 0; /* Empieza pegado a la izquierda */
+    width: 50%; /* Ocupa exactamente la mitad de la tarjeta */
+    z-index: 2; /* Está un nivel arriba del registro por defecto */
+}
+
+/* Contenedor específico del Registro (Lado izquierdo, oculto por defecto) */
+.sign-up-container {
+    left: 0; /* También empieza a la izquierda, detrás del de Login */
+    width: 50%; /* Ocupa la mitad de la tarjeta */
+    opacity: 0; /* Es invisible al inicio */
+    z-index: 1; /* Está un nivel abajo del login por defecto */
+}
+
+/* LLA ANIMACIÓN (ESTADOS ACTIVOS)*/
+
+/* Cuando JS agrega la clase .right-panel-active, el panel de REGISTRO hace esto: */
+.container.right-panel-active .sign-up-container {
+    transform: translateX(100%); /* Cruza a la otra mitad de la tarjeta moviéndose 100% de su ancho */
+    opacity: 1; /* Se vuelve visible */
+    z-index: 5; /* Sube de nivel para que puedas hacer clic en sus inputs */
+}
+
+/* Cuando JS agrega la clase .right-panel-active, el panel de LOGIN hace esto: */
+.container.right-panel-active .sign-in-container {
+    transform: translateX(100%); /* También se mueve a la derecha (quedando oculto debajo del panel de color) */
+    opacity: 0; /* Se vuelve invisible x2 */
+}
+
+/* PANEL SUPERPUESTO (EL BLOQUE DE COLOR) */
+
+/* La caja contenedora del panel de color */
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%; /* Empieza en la mitad derecha exacta de la tarjeta */
+    width: 50%; /* Ocupa la mitad derecha */
+    height: 100%;
+    overflow: hidden; /* Corta el fondo de color extra para que no ensucie los formularios */
+    transition: transform 0.6s ease-in-out; /* Animación de deslizamiento principal */
+    z-index: 100; /* Siempre debe estar en la capa más alta para tapar a los formularios de atrás */
+}
+
+/* El fondo con degradado */
+.overlay {
+    background: linear-gradient(to right, #c9b191ed, #e8d6c3); /* Degradado del color*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    /* TRUCO: Como el padre (.overlay-container) mide el 50% de la tarjeta, 
+       hacemos que el color mida el 200% para que cubra la tarjeta entera si se desliza. 
+       Luego lo recorremos un -100% a la izquierda para acomodarlo. Locura. */
+    left: -100%; 
+    height: 100%;
+    width: 200%; 
+    transform: translateX(0); /* Posición inicial */
+    transition: transform 0.6s ease-in-out;
+}
+
+/* Movimiento del contenedor del color cuando se activa el Registro */
+.container.right-panel-active .overlay-container {
+    transform: translateX(-100%); /* Se mueve de regreso hacia la mitad izquierda */
+}
+
+/* Movimiento inverso del color interior para crear un efecto (Se desliza distinto que su caja) */
+.container.right-panel-active .overlay {
+    transform: translateX(50%);
+}
+
+/* Los textos dentro del panel de color ("Bienvenido de vuelta! y ¡Hola, nuevo usuario!) */
+.overlay-panel {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%; /* Cada bloque de texto ocupa la mitad del gran panel de color */
+}
+
+/* Texto de la izquierda (Iniciar Sesión) */
+.overlay-left {
+    transform: translateX(-20%); /* Ligeramente desplazado para el efecto*/
+    transition: transform 0.6s ease-in-out;
+}
+
+/* Entra a la pantalla cuando se desliza el panel */
+.container.right-panel-active .overlay-left {
+    transform: translateX(0);
+}
+
+/* Texto de la derecha (Registrarse) */
+.overlay-right {
+    right: 0;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+/* Sale de la pantalla cuando se desliza el panel */
+.container.right-panel-active .overlay-right {
+    transform: translateX(20%);
+}
+
+/* ESTILOS DE INPUTS Y BOTONES */
+
+/* Grupo que junta el ícono y la caja de texto en una sola barra */
+.input-group {
+    display: flex;
+    align-items: center; /* Alinea ícono e input en el centro vertical */
+    background: #f0f0f0; /* Fondo */
+    border-radius: 5px; /* Bordes un poco redondeados */
+    margin-bottom: 15px; /* Separación hacia abajo entre cada campo */
+    padding: 10px;
+    width: 100%;
+}
+
+/* Quita los bordes por defecto del <fieldset> */
+fieldset.input-group {
+    border: none;
+}
+
+/* Estilo del ícono */
+.input-group i {
+    margin-right: 10px; /* Lo separa del texto que el usuario escriba */
+    color: #888; 
+}
+
+/* La caja transparente donde el usuario teclea */
+.input-group input {
+    border: none; /* Quita el borde nativo */
+    background: none; /* Fondo transparente para que se vea el gris del contenedor padre */
+    outline: none; /* Quita el marco azul brillante de Chrome/Edge al hacer clic */
+    width: 100%; 
+}
+
+/* BOTONES*/
+
+button {
+    border-radius: 20px;
+    border: 1px solid #000; 
+    background: #c9b191ed; 
+    color: #fff; /* Texto */
+    font-family: 'Bodoni Moda', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease; /* Transición suave al pasar el cursor */
+    cursor: pointer; /* Cambia a manita */
+    margin-top: 10px;
+}
+
+/* Efecto al pasar el mouse por encima del botón */
+button:hover {
+    background-color: #b3946c; /* Oscurece el botón ligeramente */
+}
+
+/* Botones "Fantasma" (Los que van sobre el bloque de color y son transparentes) */
+button.ghost {
+    background: transparent;
+    border: 2px solid #fff; /* Borde blanco y grueso */
+}
+
+/* ACCESIBILIDAD (LECTORES DE PANTALLA)*/
+
+/* Mantiene vivos los <label> para personas con discapacidad visual, pero los oculta del diseño gráfico */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
