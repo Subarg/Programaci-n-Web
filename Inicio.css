@@ -531,3 +531,123 @@ button.btn-book:hover {
     object-fit: cover;
     filter: brightness(0.7); /* Ligeramente oscura para que no le robe atención a las tarjetas */
 }
+/* ESTILOS DE LA TABLA LITERAL*/
+.seccion-tabla-precios {
+    padding: 80px 10%;
+    background-color: #fdfbf7; /* Fondo clarito */
+    color: #333;
+}
+
+/* El contenedor permite que la tabla haga scroll horizontal solo en celulares */
+.contenedor-tabla {
+    overflow-x: auto; 
+    box-shadow: 0 15px 40px rgba(0,0,0,0.06); /* Sombra elegante para todo el cuadro */
+    border-radius: 15px;
+    background-color: white;
+}
+
+/* LA TABLA */
+.tabla-lujo {
+    width: 100%; /* Ocupa todo el contenedor */
+    border-collapse: collapse; /* Une los bordes de las celdas para que se vea limpio */
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    min-width: 800px; /* Evita que se aplaste demasiado en pantallas chicas */
+}
+
+/* Espaciado de todas las celdas */
+.tabla-lujo th, .tabla-lujo td {
+    padding: 20px;
+    border-bottom: 1px solid #eaeaea; /* Línea separadora gris muy clara */
+}
+
+/* =========================================
+   ENCABEZADOS DE LA TABLA (<thead>)
+   ========================================= */
+.tabla-lujo thead th {
+    background-color: #111;
+    color: #c9b191; /* Letras doradas */
+    font-family: 'Bodoni Moda', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    border-bottom: 4px solid #c9b191; /* Línea dorada gruesa dividiendo el título del contenido */
+}
+
+.tabla-lujo thead th.col-caracteristicas {
+    text-align: left; /* Alinea el primer título a la izquierda */
+    color: white;
+}
+
+.precio-tabla {
+    display: block; /* Manda el precio al renglón de abajo */
+    font-size: 1rem;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    margin-top: 8px;
+}
+
+/* =========================================
+   CUERPO DE LA TABLA (<tbody>)
+   ========================================= */
+/* La primera columna (Las características) */
+.nombre-caracteristica {
+    text-align: left;
+    font-weight: 600;
+    color: #111;
+    background-color: #fafafa; /* Un fondo apenitas gris para distinguirla */
+}
+
+/* El texto de las celdas normales */
+.tabla-lujo tbody td {
+    color: #555;
+    font-size: 0.95rem;
+}
+
+/* =========================================
+   COLUMNA DESTACADA (La del medio)
+   ========================================= */
+.col-destacada {
+    background-color: #fcfaf5; /* Un fondo sutilmente beige/dorado */
+    border-left: 2px solid #c9b191; /* Enmarca los lados de la columna */
+    border-right: 2px solid #c9b191;
+}
+
+/* Oscurece un poquito el encabezado de la columna central para que resalte más */
+.tabla-lujo thead th.col-destacada {
+    background-color: #1a1a1a; 
+}
+
+/* =========================================
+   BOTONES DE LA TABLA (<tfoot>)
+   ========================================= */
+.tabla-lujo tfoot td {
+    padding: 30px 20px;
+    border-bottom: none; /* Quita la última línea */
+}
+
+.btn-tabla-simple {
+    background-color: transparent;
+    color: #111;
+    border: 1px solid #111;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-tabla-simple:hover { background-color: #111; color: white; }
+
+.btn-tabla-dorado {
+    background-color: #c9b191;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-tabla-dorado:hover { background-color: #b3946c; }
