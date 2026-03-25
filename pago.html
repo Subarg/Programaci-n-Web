@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago y Confirmacion - Hotel Therian</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="pago.css">
+</head>
+<body>
+    <main class="checkout-layout">
+        <section class="checkout-form-panel">
+            <a class="back-link" href="Inicio.html">Volver al inicio</a>
+            <h1>Finalizar Pago</h1>
+            <p class="subtitle">Completa tu informacion para confirmar todas tus reservaciones y experiencias.</p>
+
+            <form id="payment-form" class="payment-form">
+                <div class="field-group">
+                    <label for="fullName">Nombre completo</label>
+                    <input id="fullName" name="fullName" type="text" required>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-group">
+                        <label for="email">Correo electronico</label>
+                        <input id="email" name="email" type="email" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="phone">Telefono</label>
+                        <input id="phone" name="phone" type="tel" required>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label for="paymentMethod">Metodo de pago</label>
+                    <select id="paymentMethod" name="paymentMethod" required>
+                        <option value="">Selecciona un metodo</option>
+                        <option value="card">Tarjeta de credito/debito</option>
+                        <option value="transfer">Transferencia bancaria</option>
+                    </select>
+                </div>
+
+                <div class="field-row">
+                    <div class="field-group">
+                        <label for="cardNumber">Numero de tarjeta</label>
+                        <input id="cardNumber" name="cardNumber" type="text" placeholder="1234 5678 9012 3456" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="expiry">Expiracion</label>
+                        <input id="expiry" name="expiry" type="text" placeholder="MM/AA" required>
+                    </div>
+                    <div class="field-group cvv-group">
+                        <label for="cvv">CVV</label>
+                        <input id="cvv" name="cvv" type="password" placeholder="123" required>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label for="billingAddress">Direccion de facturacion</label>
+                    <input id="billingAddress" name="billingAddress" type="text" required>
+                </div>
+
+                <label class="terms">
+                    <input id="acceptTerms" type="checkbox" required>
+                    Acepto terminos y condiciones de compra.
+                </label>
+
+                <button id="confirm-payment" class="confirm-payment" type="submit">Confirmar y Pagar</button>
+            </form>
+        </section>
+
+        <aside class="checkout-summary-panel">
+            <h2>Resumen de gastos</h2>
+            <ul id="checkout-items" class="checkout-items"></ul>
+            <p id="checkout-empty" class="checkout-empty">Tu carrito esta vacio.</p>
+
+            <div class="totals">
+                <div><span>Subtotal</span><strong id="checkout-subtotal">$0.00</strong></div>
+                <div><span>Impuestos (16%)</span><strong id="checkout-tax">$0.00</strong></div>
+                <div class="total-row"><span>Total</span><strong id="checkout-total">$0.00</strong></div>
+            </div>
+        </aside>
+    </main>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Montserrat', sans-serif; background-color: #111; color: white; }
+h1, h2, h3 { font-family: 'Bodoni Moda', serif; }
+
+header.glass-header {
+    display: flex; justify-content: space-between; align-items: center; 
+    padding: 25px 50px; border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.logo { font-size: 24px; font-weight: bold; letter-spacing: 2px; }
+nav ul { display: flex; list-style: none; gap: 30px; align-items: center; }
+nav a { color: white; text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+nav a:hover { color: #c9b191; }
+
+/* ESTILOS DEL BOTÓN DEL CARRITO EN EL HEADER */
+.btn-carrito {
+    background: transparent;
+    color: white;
+    border: 1px solid #c9b191;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.btn-carrito:hover { background: #c9b191; color: #111; }
+.contador-carrito {
+    background: white;
+    color: #111;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 12px;
+}
+.btn-carrito:hover .contador-carrito { background: #111; color: white; }
+
+/* --- HERO DE VINOS --- */
+.hero-vinos {
+    height: 60vh;
+    /* Imagen de una cava de vinos oscura y elegante */
+    background: linear-gradient(rgba(17,17,17,0.7), rgba(17,17,17,0.9)), url('https://images.unsplash.com/photo-1559564100-367d341b1834?q=80&w=1920&auto=format&fit=crop') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero-contenido-vinos h1 {
+    font-size: 4rem;
+    color: #c9b191;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.hero-contenido-vinos p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    color: #ddd;
+    line-height: 1.6;
+}
+
+/* --- MENÚ DE SERVICIOS --- */
+.contenedor-servicios {
+    padding: 80px 10%;
+    background-color: #111;
+}
+
+.categoria-vinos { margin-bottom: 80px; }
+
+.titulo-categoria {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(201, 177, 145, 0.3);
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titulo-categoria i { color: #c9b191; font-size: 2rem; }
+
+.grid-vinos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+}
+
+.tarjeta-vinos {
+    background-color: #1a1a1a;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.tarjeta-vinos:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    border-color: rgba(201, 177, 145, 0.3);
+}
+
+.tarjeta-vinos img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    filter: brightness(0.8);
+    transition: filter 0.3s ease;
+}
+
+.tarjeta-vinos:hover img { filter: brightness(1); }
+
+.info-vinos { padding: 30px; }
+.info-vinos h3 { font-size: 1.5rem; margin-bottom: 10px; color: white; }
+
+.etiqueta {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    color: #c9b191;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.desc { color: #aaa; font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px; }
+
+.compra-vinos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+}
+
+.precio { font-family: 'Bodoni Moda', serif; font-size: 1.5rem; color: white; }
+
+.btn-dorado {
+    background-color: #c9b191;
+    color: #111;
+    border: none;
+    padding: 10px 25px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-dorado:hover { background-color: white; }
+
+.panel-carrito {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(420px, 92vw);
+    height: 100vh;
+    background: #f7f1e8;
+    color: #111;
+    z-index: 1200;
+    transform: translateX(105%);
+    transition: transform 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -8px 0 28px rgba(0, 0, 0, 0.35);
+}
+
+.panel-carrito.abierto {
+    transform: translateX(0);
+}
+
+.panel-carrito-header,
+.panel-carrito-footer {
+    padding: 18px;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.15);
+}
+
+.panel-carrito-footer {
+    margin-top: auto;
+    border-top: 1px solid rgba(17, 17, 17, 0.15);
+    border-bottom: none;
+    display: flex;
+    gap: 10px;
+}
+
+.panel-carrito-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cerrar-carrito {
+    border: 1px solid #111;
+    background: transparent;
+    color: #111;
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.lista-carrito {
+    list-style: none;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+}
+
+.item-carrito {
+    background: #fff;
+    border: 1px solid rgba(17, 17, 17, 0.12);
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.item-carrito strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.item-carrito span {
+    display: block;
+    font-size: 0.88rem;
+    color: #4b4b4b;
+}
+
+.carrito-vacio {
+    padding: 0 18px;
+    color: #555;
+}
+
+.btn-vaciar-carrito,
+.btn-reservar-carrito {
+    flex: 1;
+    border-radius: 999px;
+    padding: 11px 14px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-vaciar-carrito {
+    background: #222;
+    color: #fff;
+}
+
+.btn-reservar-carrito {
+    background: #c9b191;
+    color: #111;
+}
+
+.overlay-carrito {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    background: rgba(0, 0, 0, 0.48);
+}

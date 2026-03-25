@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spa & Wellness - Hotel Therian??</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400;1,6..96,700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <link rel="stylesheet" href="spa.css">
+</head>
+<body>
+
+    <header class="glass-header" style="background-color: #111;">
+        <div class="logo">Hotel Therian??</div>
+        <nav>
+            <ul>
+                <li><a href="Inicio.html">Inicio</a></li>
+                <li><a href="destinos.html">Destinos</a></li>
+                <li><a href="experiencias.html">Experiencias</a></li>
+                <li>
+                    <button type="button" id="btn-carrito" class="btn-carrito" aria-label="Abrir carrito de compras">
+                        Carrito
+                        <span id="contador-carrito" class="contador-carrito" aria-live="polite">0</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside id="panel-carrito" class="panel-carrito" aria-label="Carrito de compras" aria-hidden="true">
+        <header class="panel-carrito-header">
+            <h3>Tu carrito</h3>
+            <button type="button" id="cerrar-carrito" class="cerrar-carrito" aria-label="Cerrar carrito">X</button>
+        </header>
+        <ul id="lista-carrito" class="lista-carrito"></ul>
+        <p id="carrito-vacio" class="carrito-vacio">Aun no hay servicios agregados.</p>
+        <footer class="panel-carrito-footer">
+            <button type="button" id="vaciar-carrito" class="btn-vaciar-carrito">Vaciar carrito</button>
+            <button type="button" id="reservar-carrito" class="btn-reservar-carrito">Finalizar reservacion</button>
+        </footer>
+    </aside>
+
+    <div id="overlay-carrito" class="overlay-carrito" hidden></div>
+
+    <main class="seccion-spa">
+        
+        <section class="hero-spa">
+            <div class="hero-contenido-spa">
+                <h1>Santuario Therian</h1>
+                <p>Un refugio para el cuerpo, la mente y el alma. Descubre nuestra exclusiva selección de tratamientos holísticos.</p>
+            </div>
+        </section>
+
+        <section class="contenedor-servicios">
+            
+            <div class="categoria-spa">
+                <h2 class="titulo-categoria">Masajes Terapéuticos <i class="fas fa-leaf"></i></h2>
+                <div class="grid-spa">
+                    
+                    <article class="tarjeta-spa">
+                        <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?q=80&w=600&auto=format&fit=crop" alt="Masaje Relajante">
+                        <div class="info-spa">
+                            <h3>Masaje Sueco Relajante</h3>
+                            <p class="duracion">60 min | Presión suave a media</p>
+                            <p class="desc">Técnica clásica que alivia la tensión muscular y mejora la circulación utilizando aceites esenciales orgánicos.</p>
+                            <div class="compra-spa">
+                                <span class="precio">$1,200</span>
+                                <button class="btn-dorado" onclick="agregarAlCarrito('Masaje Sueco', 1200)">Reservar</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="tarjeta-spa">
+                        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=600&auto=format&fit=crop" alt="Masaje Tejido Profundo">
+                        <div class="info-spa">
+                            <h3>Tejido Profundo</h3>
+                            <p class="duracion">90 min | Presión firme</p>
+                            <p class="desc">Ideal para liberar nudos crónicos y tensión acumulada en las capas más profundas del músculo.</p>
+                            <div class="compra-spa">
+                                <span class="precio">$1,800</span>
+                                <button class="btn-dorado" onclick="agregarAlCarrito('Masaje Tejido Profundo', 1800)">Reservar</button>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+
+            <div class="categoria-spa">
+                <h2 class="titulo-categoria">Cuidado Facial <i class="fas fa-spa"></i></h2>
+                <div class="grid-spa">
+                    
+                    <article class="tarjeta-spa">
+                        <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=600&auto=format&fit=crop" alt="Facial Hidratante">
+                        <div class="info-spa">
+                            <h3>Hidratación Profunda</h3>
+                            <p class="duracion">50 min | Todo tipo de piel</p>
+                            <p class="desc">Tratamiento con ácido hialurónico y mascarillas botánicas para devolverle la luminosidad a tu rostro.</p>
+                            <div class="compra-spa">
+                                <span class="precio">$950</span>
+                                <button class="btn-dorado" onclick="agregarAlCarrito('Facial Hidratante', 950)">Reservar</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="tarjeta-spa">
+                        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=600&auto=format&fit=crop" alt="Facial Anti-Edad">
+                        <div class="info-spa">
+                            <h3>Ritual Anti-Edad ORO</h3>
+                            <p class="duracion">75 min | Pieles maduras</p>
+                            <p class="desc">Exclusivo tratamiento con láminas de oro de 24k y colágeno para un efecto lifting inmediato.</p>
+                            <div class="compra-spa">
+                                <span class="precio">$2,500</span>
+                                <button class="btn-dorado" onclick="agregarAlCarrito('Facial Anti-Edad Oro', 2500)">Reservar</button>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+
+            <div class="categoria-spa">
+                <h2 class="titulo-categoria">Rituales de Agua <i class="fas fa-water"></i></h2>
+                <div class="grid-spa">
+                    
+                    <article class="tarjeta-spa">
+                        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=600&auto=format&fit=crop" alt="Circuito Hidrotermal">
+                        <div class="info-spa">
+                            <h3>Circuito Hidrotermal</h3>
+                            <p class="duracion">120 min | Acceso general</p>
+                            <p class="desc">Recorrido por sauna, baño turco, fosa fría y piscina de hidroterapia con chorros a presión.</p>
+                            <div class="compra-spa">
+                                <span class="precio">$800</span>
+                                <button class="btn-dorado" onclick="agregarAlCarrito('Circuito Hidrotermal', 800)">Reservar</button>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

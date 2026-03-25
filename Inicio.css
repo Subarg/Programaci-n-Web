@@ -97,6 +97,155 @@ li {
     color: black; /* Cambia el texto a negro para que se lea sobre el fondo blanco */
 }
 
+.btn-carrito {
+    border: 1px solid #c9b191;
+    background: rgba(0, 0, 0, 0.45);
+    color: #f7e7cc;
+    border-radius: 22px;
+    padding: 9px 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.contador-carrito {
+    min-width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    background: #c9b191;
+    color: #111;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+.panel-carrito {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(420px, 92vw);
+    height: 100vh;
+    background: #f7f1e8;
+    color: #111;
+    z-index: 1200;
+    transform: translateX(105%);
+    transition: transform 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -8px 0 28px rgba(0, 0, 0, 0.35);
+}
+
+.panel-carrito.abierto {
+    transform: translateX(0);
+}
+
+.panel-carrito-header,
+.panel-carrito-footer {
+    padding: 18px;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.15);
+}
+
+.panel-carrito-footer {
+    margin-top: auto;
+    border-top: 1px solid rgba(17, 17, 17, 0.15);
+    border-bottom: none;
+    display: flex;
+    gap: 10px;
+}
+
+.panel-carrito-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cerrar-carrito {
+    border: 1px solid #111;
+    background: transparent;
+    color: #111;
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.lista-carrito {
+    list-style: none;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+}
+
+.item-carrito {
+    background: #fff;
+    border: 1px solid rgba(17, 17, 17, 0.12);
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.item-carrito strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.item-carrito span {
+    display: block;
+    font-size: 0.88rem;
+    color: #4b4b4b;
+}
+
+.carrito-vacio {
+    padding: 0 18px;
+    color: #555;
+}
+
+.btn-vaciar-carrito,
+.btn-reservar-carrito {
+    flex: 1;
+    border-radius: 999px;
+    padding: 11px 14px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-vaciar-carrito {
+    background: #222;
+    color: #fff;
+}
+
+.btn-reservar-carrito {
+    background: #c9b191;
+    color: #111;
+}
+
+.overlay-carrito {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    background: rgba(0, 0, 0, 0.48);
+}
+
+@media (max-width: 700px) {
+    .btn-carrito {
+        font-size: 0.72rem;
+        padding: 8px 12px;
+    }
+
+    .contador-carrito {
+        min-width: 20px;
+        height: 20px;
+    }
+}
+
 /* MENSAJE PRINCIPAL (TEXTO DEL HERO) */
 
 article.hero-content {
@@ -247,13 +396,16 @@ button.btn-book:hover {
 
 /* EL ESCENARIO (HACEMOS EL ESCENARIO MÁS GRANDE Y SUBIMOS LA PERSPECTIVA) */
 .escenario-3d {
-    width: 800px;  /* Define el ancho base del área donde girarán las tarjetas (Mucho más ancho) */
-    height: 525px; /* Distancia de la perspectiva entre el header y el contenido */
+    --card-w: 620px;
+    --card-h: 390px;
+    --carousel-radius: 620px;
+    width: var(--card-w);  /* Define el ancho base del área donde girarán las tarjetas */
+    height: calc(var(--card-h) + 20px); /* Mantiene espacio para la tarjeta y su caption */
     position: relative; /* Necesario para que las tarjetas se posicionen de forma absoluta respecto a este contenedor */
     
     /* perspective es la distancia simulada entre el usuario y el elemento 3D. 
        A mayor número (2500px), el efecto es más sutil y menos distorsionado. */
-    perspective: 2500px; 
+    perspective: 2200px; 
     margin-top: 20px; /* Separación desde arriba */
 }
 
@@ -274,8 +426,8 @@ button.btn-book:hover {
 .habitacion-card {
     display: block; /* Se asegura de que se comporte como un bloque manipulable */
     position: absolute; /* Saca a cada tarjeta del flujo normal para poder apilarlas y rotarlas desde un mismo punto central */
-    width: 800px;  /* Ancho de la tarjeta (coincide con el escenario) */
-    height: 500px; /* Alto de la tarjeta */
+    width: var(--card-w);  /* Ancho de la tarjeta (coincide con el escenario) */
+    height: var(--card-h); /* Alto de la tarjeta */
     left: 0;
     top: 0;
     margin: 0;
@@ -288,7 +440,7 @@ button.btn-book:hover {
 /* Ajustes de la imagen dentro de la tarjeta */
 .habitacion-card img {
     width: 100%; /* La imagen ocupa todo el ancho de la tarjeta */
-    height: 75%; /* La foto ocupa el 75% del alto total de la tarjeta */
+    height: 78%; /* La foto ocupa un poco más del alto total de la tarjeta */
     
     /* object-fit: cover es mágico: asegura que la imagen llene su espacio sin deformarse ni aplastarse, recortando lo sobrante si es necesario. */
     object-fit: cover; 
@@ -313,11 +465,40 @@ button.btn-book:hover {
 */
 
 /* nth-child(1) selecciona la primera tarjeta, (2) la segunda, etc. */
-.habitacion-card:nth-child(1) { transform: rotateY(0deg) translateZ(800px); } /* Tarjeta 1: Mira de frente */
-.habitacion-card:nth-child(2) { transform: rotateY(72deg) translateZ(800px); } /* Tarjeta 2: Girada 72 grados a la derecha */
-.habitacion-card:nth-child(3) { transform: rotateY(144deg) translateZ(800px); } /* Tarjeta 3: Girada 144 grados... */
-.habitacion-card:nth-child(4) { transform: rotateY(216deg) translateZ(800px); }
-.habitacion-card:nth-child(5) { transform: rotateY(288deg) translateZ(800px); }
+.habitacion-card:nth-child(1) { transform: rotateY(0deg) translateZ(var(--carousel-radius)); } /* Tarjeta 1: Mira de frente */
+.habitacion-card:nth-child(2) { transform: rotateY(72deg) translateZ(var(--carousel-radius)); } /* Tarjeta 2: Girada 72 grados a la derecha */
+.habitacion-card:nth-child(3) { transform: rotateY(144deg) translateZ(var(--carousel-radius)); } /* Tarjeta 3: Girada 144 grados... */
+.habitacion-card:nth-child(4) { transform: rotateY(216deg) translateZ(var(--carousel-radius)); }
+.habitacion-card:nth-child(5) { transform: rotateY(288deg) translateZ(var(--carousel-radius)); }
+
+@media (max-width: 1024px) {
+    .escenario-3d {
+        --card-w: 500px;
+        --card-h: 320px;
+        --carousel-radius: 500px;
+    }
+
+    .habitacion-card figcaption {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .escenario-3d {
+        --card-w: min(90vw, 320px);
+        --card-h: 220px;
+        --carousel-radius: 360px;
+        perspective: 1600px;
+    }
+
+    .habitacion-card {
+        border-radius: 14px;
+    }
+
+    .habitacion-card figcaption {
+        font-size: 1rem;
+    }
+}
 
 /* 4. ANIMACIÓN DE ROTACIÓN */
 /* Los keyframes definen los pasos de la animación que declaramos arriba ('rotacion-continua') */
